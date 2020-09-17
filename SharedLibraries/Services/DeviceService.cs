@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using MAD = Microsoft.Azure.Devices;
 using Microsoft.Azure.Devices.Client;
 using Newtonsoft.Json;
 using SharedLibraries.Models;
@@ -13,8 +14,9 @@ namespace SharedLibraries.Services
     {
         //randomfunktionen
        private static readonly Random rnd = new Random();
+        //denna skickar funktion är till för att skicka -> vi kallar på den i main
        public static async Task SendMessageAsync(DeviceClient deviceClient)
-        {
+       {
             
             while(true)
             {
@@ -36,7 +38,32 @@ namespace SharedLibraries.Services
                 Console.WriteLine($"Message sent: {json}");
                 await Task.Delay(60 * 1000);
             }
-        }
+       }
+       public static async Task RecieveMessageAsync(DeviceClient deviceClient)
+       {
+            while (true)
+            {
+                var payload = await deviceClient.ReceiveAsync();
+
+                if (payload == null)
+                    continue;
+                //hämtar 1 o 0 från byte o formaterar till string som vi skriver ut i konsollen.
+                Console.WriteLine($"Message Recieved: { Encoding.UTF8.GetString(payload.GetBytes()) }");
+
+                await deviceClient.CompleteAsync(payload);
+            }
+
+       }
+        //Detta är en service-client = IoT Hub
+        //service = något som utför något. ex en telefon
+        //device något som hämtar information ex en bil
+       public static async Task SendMessageToDeviceAsync(MAD.ServiceClient serviceClient, string targetDeviceId, string message)
+       {
+            var payload = new MAD.Message(Encoding.UTF8.GetBytes(message));
+            await serviceClient.SendAsync(targetDeviceId, payload);
+
+
+       }
 
     }
 }
