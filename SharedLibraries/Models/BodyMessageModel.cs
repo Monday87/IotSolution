@@ -4,7 +4,10 @@ using System.Text;
 
 namespace SharedLibraries.Models
 {
-    class BodyMessageModel
+    public class BodyMessageModel
     {
+        public string TargetDeviceId { get; set; }
+        public string Message { get; set; }
+
     }
 }
