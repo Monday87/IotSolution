@@ -10,6 +10,8 @@ using Newtonsoft.Json;
 using SharedLibraries.Models;
 using SharedLibraries.Services;
 using Microsoft.Azure.Devices;
+
+
 namespace AzureFunctions
 {
     public static class SendMessageToDevice
