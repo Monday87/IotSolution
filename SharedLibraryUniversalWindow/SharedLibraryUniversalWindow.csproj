@@ -122,6 +122,8 @@
   <ItemGroup>
     <Compile Include="Models\BodyMessageModelUwp.cs" />
     <Compile Include="Models\TemperatureModelUwp.cs" />
+    <Compile Include="Models\WeatherList.cs" />
+    <Compile Include="Models\WeatherModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DeviceServiceUwp.cs" />
     <EmbeddedResource Include="Properties\SharedLibraryUniversalWindow.rd.xml" />

@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using UWP_Uppgift4.Helpers;
 using Microsoft.Azure.Devices.Client;
+using SharedLibraryUniversalWindow.Models;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -29,13 +30,23 @@ namespace UWP_Uppgift4
             this.InitializeComponent();
         }
 
-        
 
-        
+
+        public WeatherList weatherList = new WeatherList();
 
         public void btnClickHere_Click_1(object sender, RoutedEventArgs e)
         {
-            AzureHelpers.SendRecieveMessageAsync();
+           AzureHelpers.SendRecieveMessageAsync();
+
+            try
+            {
+                lvWeatherList.ItemsSource = lvWeatherList;
+
+            }
+            catch
+            {
+
+            }
         }
     }
 }

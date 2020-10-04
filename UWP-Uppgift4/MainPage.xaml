@@ -8,11 +8,31 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid Background="Orange">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            
+        </Grid.RowDefinitions>
      
-        <!-- Buttons arranged vertically inside a StackPanel. -->
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button x:Name="btnClickHere" Width="120" Height="50" Content="Click Here" FontSize="20" FontWeight="Bold" Click="btnClickHere_Click_1"  /> 
+        
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button x:Name="btnClickHere" Width="120" Height="50"  Content="Click Here" FontSize="20" FontWeight="Bold" Click="btnClickHere_Click_1" Background="#33170202" Foreground="Black" /> 
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <ListView x:Name="lvWeatherList" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        
+                            <Border Background="Black" Height="200" Width="200">
+                            <TextBlock Text="{Binding Temperature}"/>
+                            </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                
+                    
+            </ListView>
         </StackPanel>
     </Grid>
 </Page>
